@@ -43,18 +43,24 @@ defmodule Trampolines do
 
   defp jump_strange(map, index, count) do
     case map[index] do
-      nil -> count
+      nil ->
+        count
+
       to when to >= 3 ->
         jump_strange(Map.put(map, index, to - 1), index + to, count + 1)
-      to -> jump_strange(Map.put(map, index, to + 1), index + to, count + 1)
+
+      to ->
+        jump_strange(Map.put(map, index, to + 1), index + to, count + 1)
     end
   end
 
   defp to_indexed_map(string) when is_binary(string) do
-    indexed = string
-    |> String.split()
-    |> Enum.map(&String.to_integer/1)
-    |> Enum.with_index()
-    for {val, i} <- indexed, into: Map.new, do: {i, val}
+    indexed =
+      string
+      |> String.split()
+      |> Enum.map(&String.to_integer/1)
+      |> Enum.with_index()
+
+    for {val, i} <- indexed, into: Map.new(), do: {i, val}
   end
 end

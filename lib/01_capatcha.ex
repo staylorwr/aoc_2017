@@ -16,13 +16,13 @@ defmodule Captacha do
       3
 
   """
-  @spec sum(String.t) :: integer
+  @spec sum(String.t()) :: integer
   def sum(string) do
     string
     |> string_to_int_list()
-    |> (fn(list) ->
-      list ++ Enum.take(list, 1)
-    end).()
+    |> (fn list ->
+          list ++ Enum.take(list, 1)
+        end).()
     |> Enum.chunk_every(2, 1, :discard)
     |> sum_likes()
   end
@@ -36,17 +36,17 @@ defmodule Captacha do
       iex> Captacha.sum_across("1212")
       6
   """
-  @spec sum_across(String.t) :: integer
+  @spec sum_across(String.t()) :: integer
   def sum_across(string) do
     str_length = String.length(string)
     list = string_to_int_list(string)
 
     list
     |> Enum.with_index()
-    |> Enum.map(fn({a, i}) ->
-      index = Integer.mod(trunc(str_length / 2 + i), str_length)
-      [a, Enum.at(list, index)]
-    end)
+    |> Enum.map(fn {a, i} ->
+         index = Integer.mod(trunc(str_length / 2 + i), str_length)
+         [a, Enum.at(list, index)]
+       end)
     |> sum_likes()
   end
 
@@ -58,8 +58,8 @@ defmodule Captacha do
 
   defp sum_likes(list) do
     list
-    |> Enum.filter(fn([a,b]) -> a == b end)
-    |> Enum.map(fn([a, _]) -> a end)
+    |> Enum.filter(fn [a, b] -> a == b end)
+    |> Enum.map(fn [a, _] -> a end)
     |> Enum.sum()
   end
 end
