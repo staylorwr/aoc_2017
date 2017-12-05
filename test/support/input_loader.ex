@@ -7,10 +7,12 @@ defmodule Aoc.InputLoader do
   Loads the given file as a string
   """
   def input(name) do
-    {:ok, bin} = "priv/#{name}.txt"
+    {:ok, bin} =
+      "priv/#{name}.txt"
       |> Path.expand()
       |> Path.absname()
-      |> File.read
+      |> File.read()
+
     bin |> String.trim()
   end
 end

@@ -3,12 +3,12 @@ defmodule TrampolinesTest do
   doctest Trampolines
 
   @example ~S"""
-    0
-    3
-    0
-    1
-    -3
-    """
+  0
+  3
+  0
+  1
+  -3
+  """
 
   test "instruction count until exit" do
     assert @example |> Trampolines.count_steps() == 5

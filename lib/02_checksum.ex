@@ -9,7 +9,7 @@ defmodule Checksum do
   by summing the difference
   between the minimum and maximum values per row
   """
-  @spec checksum(String.t) :: Integer.t
+  @spec checksum(String.t()) :: Integer.t()
   def checksum(string) do
     string
     |> parse()
@@ -19,7 +19,7 @@ defmodule Checksum do
   @doc """
   Calculates the checksum by finding the evenly divisible values
   """
-  @spec div_checksum(String.t) :: Integer.t
+  @spec div_checksum(String.t()) :: Integer.t()
   def div_checksum(string) do
     string
     |> parse()
@@ -33,7 +33,13 @@ defmodule Checksum do
   end
 
   defp divisable_pairs(row) do
-    evens = for x <- row, y <- row, x != y, rem(x,y) == 0, do: div(x, y)
+    evens =
+      for x <- row,
+          y <- row,
+          x != y,
+          rem(x, y) == 0,
+          do: div(x, y)
+
     hd(evens)
   end
 
@@ -41,13 +47,13 @@ defmodule Checksum do
     input
     |> String.split("\n", trim: true)
     |> Enum.map(fn s ->
-      s |> String.split |> Enum.map(&String.to_integer/1)
-    end)
+         s |> String.split() |> Enum.map(&String.to_integer/1)
+       end)
   end
 
   defp solve(matrix, fun) do
     matrix
-    |> Enum.map(&(fun.(&1)))
-    |> Enum.sum
+    |> Enum.map(&fun.(&1))
+    |> Enum.sum()
   end
 end
