@@ -73,8 +73,8 @@ defmodule MemoryAllocation do
   defp cycle([], pot, acc), do: cycle(Enum.reverse(acc), pot, [])
   defp cycle([hd | tl], pot, acc), do: cycle(tl, pot - 1, [hd + 1 | acc])
 
-
   defp detect_repetition(state), do: detect_repetition(state, MapSet.new())
+
   defp detect_repetition(state, seen) do
     if MapSet.member?(seen, state) do
       {seen, state}

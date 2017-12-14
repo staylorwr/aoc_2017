@@ -23,8 +23,8 @@ defmodule StreamProcessingTest do
 
     test "part 1 input" do
       assert "9"
-      |> input()
-      |> score() == 20530
+             |> input()
+             |> score() == 20530
     end
   end
 
@@ -37,8 +37,8 @@ defmodule StreamProcessingTest do
 
     test "part 2 input" do
       assert "9"
-      |> input()
-      |> garbage_length() == 9978
+             |> input()
+             |> garbage_length() == 9978
     end
   end
 end

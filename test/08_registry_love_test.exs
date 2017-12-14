@@ -16,8 +16,8 @@ defmodule RegistryLoveTest do
   @tag :input
   test "part 1" do
     assert "8"
-    |> input()
-    |> RegistryLove.max_after() == 6012
+           |> input()
+           |> RegistryLove.max_after() == 6012
   end
 
   test "part 2 example" do
@@ -26,6 +26,6 @@ defmodule RegistryLoveTest do
 
   @tag :input
   test "part 2" do
-    assert "8" |> input|> RegistryLove.max_during() == 6369
+    assert "8" |> input |> RegistryLove.max_during() == 6369
   end
 end

@@ -35,7 +35,6 @@ defmodule StreamProcessing do
     |> total_score()
   end
 
-
   @doc """
   Count the garbage results
 
@@ -93,6 +92,7 @@ defmodule StreamProcessing do
   defp parse_into_tree(<<char::utf8>> <> rest, [gb | tree], true) do
     parse_into_tree(rest, [gb <> <<char::utf8>> | tree], true)
   end
+
   @doc """
   Assign scores to each node in the tree, starting with 1
   ## Examples
