@@ -22,6 +22,7 @@ defmodule CircusTest do
       assert Circus.bottom_program(@input) == "tknk"
     end
 
+    @tag :input
     test "returns part 1 answer" do
       assert input("7") |> Circus.bottom_program == "vmpywg"
     end
@@ -32,6 +33,7 @@ defmodule CircusTest do
       assert Circus.unbalanced_weight(@input) == 60
     end
 
+    @tag :input
     test "returns part 2 answer" do
       assert "7"
       |> input()
